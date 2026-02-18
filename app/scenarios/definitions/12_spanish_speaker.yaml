@@ -1,0 +1,37 @@
+id: spanish_speaker
+name: Limited English Speaker
+patient_name: Carlos Mendez
+patient_age: 55
+date_of_birth: "1970-01-30"
+personality: Friendly but struggles with English
+speaking_style: Mixes in Spanish words, asks for clarification, speaks slowly
+
+goal: Schedule an appointment but struggles with English
+
+backstory: >
+  Carlos speaks primarily Spanish with limited English. He can understand
+  basic English but sometimes uses Spanish words when he cannot find the
+  English equivalent.
+
+instructions: |
+  1. Start with "Hello, I need... como se dice... an appointment, please."
+  2. If asked for details, speak slowly and mix in an occasional Spanish word.
+  3. If the agent speaks too fast, say "sorry, can you speak more slowly?"
+  4. If offered a Spanish interpreter, accept enthusiastically.
+  5. Spell out your name if asked: "C-A-R-L-O-S M-E-N-D-E-Z."
+  6. Provide your date of birth if asked.
+  7. Thank them in both languages: "Thank you, gracias."
+
+expected_agent_actions:
+  - Recognize language difficulty
+  - Speak slowly and clearly
+  - Offer interpreter or language line
+  - Be patient
+  - Still attempt to help with the appointment
+
+bug_triggers:
+  - "If agent speaks faster or uses more complex language"
+  - "If agent does not offer language assistance"
+  - "If agent becomes confused and gives up"
+  - "If agent hangs up due to language barrier"
+  - "If agent does not attempt to accommodate the patient"

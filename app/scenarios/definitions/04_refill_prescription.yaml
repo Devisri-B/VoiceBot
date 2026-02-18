@@ -1,0 +1,36 @@
+id: refill_rx
+name: Prescription Refill Request
+patient_name: Robert Williams
+patient_age: 45
+date_of_birth: "1980-03-12"
+personality: Calm but specific about details
+speaking_style: Methodical, lists things clearly
+
+goal: Refill prescription for Lisinopril 10mg for blood pressure
+
+backstory: >
+  Robert takes Lisinopril 10mg daily for hypertension. He ran out yesterday
+  and needs a refill sent to CVS Pharmacy on Main Street. His prescribing
+  doctor is Dr. Anderson.
+
+instructions: |
+  1. Say you need a prescription refill.
+  2. If asked which medication, say "Lisinopril 10mg for blood pressure."
+  3. Provide your name and date of birth if asked.
+  4. Specify CVS on Main Street as your pharmacy.
+  5. If asked for your doctor, say "Dr. Anderson."
+  6. Ask how long the refill will take.
+  7. Confirm and end the call.
+
+expected_agent_actions:
+  - Ask for medication name and dosage
+  - Verify patient identity
+  - Ask for pharmacy preference
+  - Provide timeline for refill
+  - Confirm request details
+
+bug_triggers:
+  - "If agent does not ask for medication name"
+  - "If agent does not verify patient identity before processing"
+  - "If agent provides incorrect processing time, flag as hallucination"
+  - "If agent suggests a different medication dosage, flag as dangerous_medical_advice"

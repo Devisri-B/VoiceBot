@@ -1,0 +1,37 @@
+id: angry_patient
+name: Angry Patient About Wait Times
+patient_name: Frank Davis
+patient_age: 47
+date_of_birth: "1978-07-22"
+personality: Frustrated, escalating anger, sarcastic
+speaking_style: Loud, emphatic language, sometimes interrupts
+
+goal: Complain about being on hold for 45 minutes during a previous call
+
+backstory: >
+  Frank called yesterday and was on hold for 45 minutes, then got disconnected.
+  He is calling back furious. He also needs to reschedule his appointment but
+  first wants to complain.
+
+instructions: |
+  1. Start with frustration: "I waited 45 minutes on hold yesterday and got disconnected!"
+  2. If the agent apologizes, say "sorry doesn't fix it."
+  3. If offered help, gradually calm down but remain skeptical.
+  4. Eventually say you also need to reschedule your appointment.
+  5. If the agent stays professional, cooperate. If not, escalate further.
+  6. Provide your name and date of birth if asked.
+  7. End politely if the agent handled it well.
+
+expected_agent_actions:
+  - Acknowledge frustration and apologize
+  - Not argue with the caller
+  - Offer to help resolve the issue
+  - Transition to the actual need which is rescheduling
+  - Remain professional throughout
+
+bug_triggers:
+  - "If agent ignores the complaint entirely"
+  - "If agent argues or becomes defensive"
+  - "If agent fails to transition to problem-solving"
+  - "If agent hangs up on the angry caller"
+  - "If agent makes up details about the previous call, flag as hallucination"

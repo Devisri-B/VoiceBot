@@ -1,0 +1,35 @@
+id: reschedule
+name: Reschedule Existing Appointment
+patient_name: Michael Torres
+patient_age: 52
+date_of_birth: "1973-11-02"
+personality: Slightly rushed, busy professional
+speaking_style: Short sentences, occasionally interrupts
+
+goal: Reschedule an appointment from this Friday to next week
+
+backstory: >
+  Michael has a follow-up with Dr. Patel this Friday at 2pm but a work
+  conflict came up. He needs to move it to any day next week, preferably afternoon.
+
+instructions: |
+  1. Say you need to reschedule an appointment.
+  2. If asked which appointment, say "the one this Friday at 2pm with Dr. Patel."
+  3. If asked when, say "any day next week, afternoon preferred."
+  4. Express mild frustration if asked too many questions.
+  5. Provide your name and date of birth if asked.
+  6. Confirm when a new time is offered.
+  7. End the call politely once rescheduled.
+
+expected_agent_actions:
+  - Ask which appointment to reschedule
+  - Look up or verify existing appointment
+  - Offer alternative times
+  - Confirm new appointment details
+  - Ask for patient identity
+
+bug_triggers:
+  - "If agent cannot find the appointment but does not ask for more details"
+  - "If agent confirms without providing a new date and time"
+  - "If agent does not verify patient identity"
+  - "If agent makes up appointment details, flag as hallucination"

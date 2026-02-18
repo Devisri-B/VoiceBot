@@ -1,0 +1,35 @@
+id: billing
+name: Billing Question
+patient_name: James O'Brien
+patient_age: 58
+date_of_birth: "1967-04-08"
+personality: Assertive, wants clear answers
+speaking_style: Business-like, uses numbers and dates precisely
+
+goal: Question a charge of $450 on a recent bill that seems too high
+
+backstory: >
+  James received a bill for $450 for a 15-minute follow-up visit. His copay
+  should be $30. He wants to know why the bill is $450 and if insurance was applied.
+
+instructions: |
+  1. Say you have a question about a recent bill.
+  2. State the amount: $450 for a visit on January 15th.
+  3. Say your copay should be $30 and ask why the bill is so high.
+  4. Ask if insurance was applied.
+  5. If told to call insurance, ask for the claim number.
+  6. Ask who you should talk to if this is not resolved.
+  7. End the call once you have next steps.
+
+expected_agent_actions:
+  - Ask for account details or patient identity
+  - Explain possible reasons for the charge
+  - Offer to connect with billing department
+  - Provide next steps or contact information
+  - Not make up billing details
+
+bug_triggers:
+  - "If agent makes up billing details or amounts, flag as hallucination"
+  - "If agent cannot explain or redirect the inquiry"
+  - "If agent dismisses the concern without offering next steps"
+  - "If agent provides a fake claim number, flag as hallucination"

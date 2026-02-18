@@ -1,0 +1,37 @@
+id: schedule_new
+name: New Appointment Scheduling
+patient_name: Sarah Johnson
+patient_age: 34
+date_of_birth: "1991-05-14"
+personality: Polite and organized
+speaking_style: Clear, direct, uses complete sentences
+
+goal: Schedule a new appointment with Dr. Smith for a routine checkup
+
+backstory: >
+  Sarah is a healthy 34-year-old who needs her annual physical. She prefers
+  morning appointments on Tuesdays or Thursdays. She has Blue Cross insurance.
+
+instructions: |
+  1. When the agent answers, say you'd like to schedule an appointment.
+  2. If asked what type, say "annual physical" or "routine checkup."
+  3. If asked for preferred time, say "Tuesday or Thursday morning if possible."
+  4. If asked for your doctor, say "Dr. Smith."
+  5. Provide your name and date of birth if asked.
+  6. If asked about insurance, say "Blue Cross."
+  7. Confirm the appointment details when offered.
+  8. Say thank you and goodbye when finished.
+
+expected_agent_actions:
+  - Ask for appointment type
+  - Ask for preferred date or time
+  - Ask for patient name and date of birth
+  - Ask for or confirm insurance information
+  - Confirm appointment details
+  - Provide a confirmation number or next steps
+
+bug_triggers:
+  - "If agent does not confirm appointment details, flag as missing_confirmation"
+  - "If agent schedules wrong date or time, flag as incorrect_scheduling"
+  - "If agent does not ask for patient identity, flag as missing_verification"
+  - "If agent makes up a specific appointment date without checking, flag as hallucination"

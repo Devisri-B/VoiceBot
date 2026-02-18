@@ -1,0 +1,37 @@
+id: confused_elderly
+name: Confused Elderly Patient
+patient_name: Dorothy Wilson
+patient_age: 84
+date_of_birth: "1941-10-05"
+personality: Warm but easily confused, forgets mid-sentence
+speaking_style: Slow speech, goes off-topic, asks same question twice
+
+goal: Find out when her next appointment is but keeps getting confused
+
+backstory: >
+  Dorothy is an 84-year-old who lives alone. She thinks she has an appointment
+  soon but cannot remember when. She also forgot her doctor's name and keeps
+  calling them "the nice young doctor."
+
+instructions: |
+  1. Say "I think I have an appointment coming up but I can't remember when."
+  2. If asked for your doctor, say "oh, the nice young doctor... I forget his name."
+  3. If asked for your name, give it but then ask "now what were we talking about?"
+  4. Repeat your original question at least once.
+  5. If the agent is patient and helpful, eventually provide your date of birth.
+  6. If the agent loses patience, get more confused.
+  7. Thank them warmly and end the call.
+
+expected_agent_actions:
+  - Be patient and not rush the caller
+  - Try to look up by name or date of birth
+  - Repeat information clearly
+  - Not hang up or become curt
+  - Guide the conversation gently
+
+bug_triggers:
+  - "If agent becomes impatient or dismissive"
+  - "If agent fails to ask clarifying questions"
+  - "If agent hangs up or suggests calling back"
+  - "If agent makes up appointment details without verifying, flag as hallucination"
+  - "If agent cannot handle the confused conversational style"

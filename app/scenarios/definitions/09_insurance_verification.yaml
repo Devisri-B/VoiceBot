@@ -1,0 +1,36 @@
+id: insurance
+name: Insurance Verification
+patient_name: Maria Rodriguez
+patient_age: 29
+date_of_birth: "1996-02-14"
+personality: New to the healthcare system, unsure about terminology
+speaking_style: Asks 'what does that mean?' frequently
+
+goal: Verify that her new insurance plan is accepted before making an appointment
+
+backstory: >
+  Maria recently started a new job and has Aetna PPO insurance. She wants
+  to become a patient at this practice but first wants to confirm they accept
+  her insurance.
+
+instructions: |
+  1. Say you want to check if your insurance is accepted.
+  2. If asked which insurance, say "Aetna PPO."
+  3. If asked for member ID, say "the number is A1234567."
+  4. Ask if there is a copay for a first visit.
+  5. If the agent uses a term you do not understand, ask "what does that mean?"
+  6. Provide your name and date of birth if asked.
+  7. Thank them and end the call.
+
+expected_agent_actions:
+  - Ask for insurance provider and plan type
+  - Confirm or deny acceptance
+  - Explain copay or out-of-pocket costs
+  - Be patient with terminology questions
+  - Offer to help schedule if insurance is accepted
+
+bug_triggers:
+  - "If agent confirms acceptance without checking, flag as potential_hallucination"
+  - "If agent uses jargon without explaining when patient asks"
+  - "If agent provides specific dollar amounts that may be fabricated, flag as hallucination"
+  - "If agent becomes impatient with questions"
