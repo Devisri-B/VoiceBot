@@ -8,8 +8,8 @@ A voice bot that calls a medical office AI agent, simulates realistic patient sc
 # 1. Setup (one-time)
 ./setup.sh
 
-# 2. Edit .env with your Twilio credentials
-#    Get free trial at https://www.twilio.com/try-twilio
+# 2. Edit .env with your SignalWire credentials
+#    Get free trial at https://signalwire.com
 
 # 3. Start the server (starts ngrok + FastAPI)
 ./run.sh
@@ -26,7 +26,7 @@ python -m app.pipeline.run_test_suite                           # All 12 scenari
 - **macOS** (tested on Apple Silicon)
 - **Homebrew** (`brew`)
 - **Ollama** with `llama3` model ([ollama.com](https://ollama.com))
-- **Twilio account** (free trial gives $15.50 credit)
+- **SignalWire account** (free trial gives $5.00 credit)
 
 ## Environment Variables
 
@@ -34,9 +34,10 @@ Copy `.env.example` to `.env` and fill in:
 
 | Variable | Description |
 |----------|-------------|
-| `TWILIO_ACCOUNT_SID` | From Twilio Console |
-| `TWILIO_AUTH_TOKEN` | From Twilio Console |
-| `TWILIO_FROM_NUMBER` | Your Twilio phone number (e.g., +1234567890) |
+| `SIGNALWIRE_PROJECT_ID` | From SignalWire Dashboard |
+| `SIGNALWIRE_API_TOKEN` | From SignalWire API settings |
+| `SIGNALWIRE_SPACE_URL` | Your space URL (e.g., yourname.signalwire.com) |
+| `SIGNALWIRE_FROM_NUMBER` | Your SignalWire phone number (e.g., +1234567890) |
 | `TARGET_PHONE_NUMBER` | Number to call (default: +18054398008) |
 | `NGROK_URL` | Auto-set by `run.sh` |
 | `OLLAMA_MODEL` | LLM model (default: llama3) |
@@ -49,7 +50,7 @@ BOT/
 ├── app/
 │   ├── main.py              # FastAPI server
 │   ├── config.py            # Settings
-│   ├── telephony/           # Twilio call + WebSocket handling
+│   ├── telephony/           # SignalWire call + WebSocket handling
 │   ├── audio/               # mu-law conversion, TTS, audio buffering
 │   ├── speech/              # Whisper STT, VAD, turn detection
 │   ├── brain/               # Ollama LLM, patient persona, response gen
@@ -93,7 +94,7 @@ The system detects:
 ## Cost
 
 All tools are free:
-- Twilio free trial: $15.50 credit (~370 calls)
+- SignalWire free trial: $5.00 credit
 - faster-whisper: Local, open source
 - edge-tts: Free (Microsoft Edge TTS)
 - Ollama + llama3: Local, open source

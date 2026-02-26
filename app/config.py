@@ -3,10 +3,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Twilio
-TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID", "")
-TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN", "")
-TWILIO_FROM_NUMBER = os.getenv("TWILIO_FROM_NUMBER", "")
+# SignalWire
+SIGNALWIRE_PROJECT_ID = os.getenv("SIGNALWIRE_PROJECT_ID", "")
+SIGNALWIRE_API_TOKEN = os.getenv("SIGNALWIRE_API_TOKEN", "")
+SIGNALWIRE_SPACE_URL = os.getenv("SIGNALWIRE_SPACE_URL", "")
+SIGNALWIRE_FROM_NUMBER = os.getenv("SIGNALWIRE_FROM_NUMBER", "")
 
 # Target
 TARGET_PHONE_NUMBER = os.getenv("TARGET_PHONE_NUMBER", "+18054398008")
@@ -23,7 +24,7 @@ WHISPER_MODEL_SIZE = os.getenv("WHISPER_MODEL_SIZE", "base")
 
 # Call settings
 SILENCE_THRESHOLD_MS = int(os.getenv("SILENCE_THRESHOLD_MS", "700"))
-TRIAL_MESSAGE_DURATION_S = int(os.getenv("TRIAL_MESSAGE_DURATION_S", "10"))
+TRIAL_MESSAGE_DURATION_S = int(os.getenv("TRIAL_MESSAGE_DURATION_S", "0"))
 MAX_CALL_DURATION_S = int(os.getenv("MAX_CALL_DURATION_S", "180"))
 
 # Paths

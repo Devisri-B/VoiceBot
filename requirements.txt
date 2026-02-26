@@ -1,7 +1,7 @@
 fastapi==0.115.0
 uvicorn[standard]==0.34.0
 websockets==14.0
-twilio==9.4.0
+signalwire>=2.0.0
 faster-whisper==1.2.1
 edge-tts==7.0.0
 httpx==0.28.0
@@ -12,3 +12,4 @@ pyyaml>=6.0.2
 python-dotenv==1.0.1
 audioop-lts==0.2.2
 pydantic>=2.10.0
+python-multipart>=0.0.9

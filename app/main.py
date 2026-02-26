@@ -3,7 +3,7 @@ import logging
 
 from fastapi import FastAPI, WebSocket
 
-from app.telephony.twilio_webhook import router as twilio_router
+from app.telephony.twilio_webhook import router as webhook_router
 from app.telephony.media_stream import handle_media_stream
 
 logging.basicConfig(
@@ -14,13 +14,13 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(title="VoiceBot - AI Agent Tester")
 
-# Mount Twilio HTTP routes
-app.include_router(twilio_router)
+# Mount SignalWire HTTP routes
+app.include_router(webhook_router)
 
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
-    """Bidirectional WebSocket endpoint for Twilio Media Streams."""
+    """Bidirectional WebSocket endpoint for SignalWire Media Streams."""
     await handle_media_stream(websocket)
 
 

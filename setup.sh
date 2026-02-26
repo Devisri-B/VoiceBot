@@ -70,16 +70,17 @@ if [ ! -f ".env" ]; then
     echo "Creating .env from template..."
     cp .env.example .env
     echo ""
-    echo "IMPORTANT: Edit .env with your Twilio credentials:"
-    echo "  TWILIO_ACCOUNT_SID=your_sid"
-    echo "  TWILIO_AUTH_TOKEN=your_token"
-    echo "  TWILIO_FROM_NUMBER=+1XXXXXXXXXX"
+    echo "IMPORTANT: Edit .env with your SignalWire credentials:"
+    echo "  SIGNALWIRE_PROJECT_ID=your_project_id"
+    echo "  SIGNALWIRE_API_TOKEN=your_api_token"
+    echo "  SIGNALWIRE_SPACE_URL=yourspace.signalwire.com"
+    echo "  SIGNALWIRE_FROM_NUMBER=+1XXXXXXXXXX"
     echo ""
 fi
 
 echo ""
 echo "=== Setup Complete ==="
 echo "Next steps:"
-echo "  1. Edit .env with your Twilio credentials"
+echo "  1. Edit .env with your SignalWire credentials"
 echo "  2. Start Ollama: ollama serve"
 echo "  3. Run: ./run.sh"

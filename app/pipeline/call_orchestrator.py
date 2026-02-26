@@ -18,7 +18,7 @@ async def run_call(scenario: dict, webhook_url: str) -> dict | None:
     """Execute a single test call for a given scenario.
 
     1. Set the scenario for the media stream handler
-    2. Initiate the outbound call via Twilio
+    2. Initiate the outbound call via SignalWire
     3. Wait for the call and media stream to complete
     4. Analyze the transcript for bugs
     5. Generate and save a report

@@ -1,5 +1,5 @@
 import logging
-from twilio.rest import Client
+from signalwire.rest import Client
 
 from app import config
 
@@ -7,15 +7,19 @@ logger = logging.getLogger(__name__)
 
 
 def make_call(webhook_url: str) -> str:
-    """Initiate an outbound call via Twilio REST API.
+    """Initiate an outbound call via SignalWire REST API.
 
     Returns the Call SID.
     """
-    client = Client(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOKEN)
+    client = Client(
+        config.SIGNALWIRE_PROJECT_ID,
+        config.SIGNALWIRE_API_TOKEN,
+        signalwire_space_url=config.SIGNALWIRE_SPACE_URL,
+    )
 
     call = client.calls.create(
         to=config.TARGET_PHONE_NUMBER,
-        from_=config.TWILIO_FROM_NUMBER,
+        from_=config.SIGNALWIRE_FROM_NUMBER,
         url=f"{webhook_url}/voice",
         status_callback=f"{webhook_url}/status",
         status_callback_event=["initiated", "ringing", "answered", "completed"],

@@ -43,7 +43,7 @@ def get_last_transcript() -> dict | None:
 
 
 async def handle_media_stream(websocket: WebSocket):
-    """Handle a Twilio Media Stream WebSocket connection.
+    """Handle a SignalWire Media Stream WebSocket connection.
 
     This is the core real-time audio processing loop.
     """
@@ -80,7 +80,7 @@ async def handle_media_stream(websocket: WebSocket):
     outbound_queue: asyncio.Queue[bytes | None] = asyncio.Queue()
 
     async def send_loop():
-        """Send audio chunks from the outbound queue to Twilio."""
+        """Send audio chunks from the outbound queue to SignalWire."""
         nonlocal speaking
         try:
             while True:
@@ -112,7 +112,7 @@ async def handle_media_stream(websocket: WebSocket):
             # Check if agent interrupted us (VAD detected speech during our turn)
             if turn_detector.state == TurnState.LISTENING:
                 logger.info("Interrupted by agent, stopping speech")
-                # Clear Twilio's playback buffer
+                # Clear SignalWire's playback buffer
                 try:
                     await websocket.send_json({
                         "event": "clear",
@@ -164,7 +164,7 @@ async def handle_media_stream(websocket: WebSocket):
                 pcm_8k = mulaw_decode(mulaw_bytes)
                 pcm_16k = resample_audio(pcm_8k, 8000, 16000)
 
-                # Skip trial message period
+                # Skip initial message period (if any)
                 elapsed = time.time() - (stream_start_time or time.time())
                 if elapsed < config.TRIAL_MESSAGE_DURATION_S:
                     continue
@@ -173,7 +173,7 @@ async def handle_media_stream(websocket: WebSocket):
                     trial_ended = True
                     turn_detector.mark_trial_ended()
                     vad.reset()
-                    logger.info("Trial message period ended, listening...")
+                    logger.info("Initial message period ended, listening...")
 
                 # Feed to audio buffer
                 await audio_buffer.add_samples(pcm_16k)
@@ -200,14 +200,8 @@ async def handle_media_stream(websocket: WebSocket):
                         if len(audio_data) > 0:
                             agent_text, confidence = stt.transcribe(audio_data)
 
-                            # Skip empty or trial message artifacts
+                            # Skip empty transcriptions
                             if not agent_text.strip():
-                                turn_detector.mark_listening()
-                                continue
-
-                            trial_words = {"trial", "twilio", "upgrade", "account"}
-                            if any(w in agent_text.lower() for w in trial_words):
-                                logger.info("Discarding trial message artifact: %s", agent_text[:50])
                                 turn_detector.mark_listening()
                                 continue
 

@@ -11,7 +11,7 @@ router = APIRouter()
 
 @router.api_route("/voice", methods=["GET", "POST"])
 async def voice_webhook(request: Request):
-    """Return TwiML that opens a bidirectional Media Stream."""
+    """Return LaML (SignalWire's TwiML-compatible markup) that opens a bidirectional Media Stream."""
     ngrok_url = config.NGROK_URL
     # Convert https:// to wss:// for WebSocket
     ws_url = ngrok_url.replace("https://", "wss://").replace("http://", "ws://")
@@ -29,7 +29,7 @@ async def voice_webhook(request: Request):
 
 @router.post("/status")
 async def status_callback(request: Request):
-    """Receive call status updates from Twilio."""
+    """Receive call status updates from SignalWire."""
     form = await request.form()
     status = form.get("CallStatus", "unknown")
     call_sid = form.get("CallSid", "unknown")
